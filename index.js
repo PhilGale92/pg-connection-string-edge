@@ -70,26 +70,26 @@ function parse(str) {
   }
 
   // Only try to load fs if we expect to read from the disk
-  let fs = null
+  let fsLoader = null
   if (config.sslcert || config.sslkey || config.sslrootcert) {
     // eslint-disable-next-line no-undef
     if (typeof EdgeRuntime === 'string') {
       // eslint-disable-next-line no-undef
-     // fs = FileSystem;
+      fsLoader = fs;
     } else {
-      fs = require('fs');
+      fsLoader = require('fs');
     }
   }
   if (config.sslcert) {
-    config.ssl.cert = fs.readFileSync(config.sslcert).toString()
+    config.ssl.cert = fsLoader.readFileSync(config.sslcert).toString()
   }
 
   if (config.sslkey) {
-    config.ssl.key = fs.readFileSync(config.sslkey).toString()
+    config.ssl.key = fsLoader.readFileSync(config.sslkey).toString()
   }
 
   if (config.sslrootcert) {
-    config.ssl.ca = fs.readFileSync(config.sslrootcert).toString()
+    config.ssl.ca = fsLoader.readFileSync(config.sslrootcert).toString()
   }
 
   switch (config.sslmode) {

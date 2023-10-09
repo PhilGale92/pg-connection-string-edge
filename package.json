@@ -1,6 +1,6 @@
 {
   "name": "pg-connection-string-edge",
-  "version": "2.6.1",
+  "version": "2.6.2",
   "description": "Functions for dealing with a PostgresSQL connection string with edge patches",
   "main": "./index.js",
   "types": "./index.d.ts",
